@@ -1,5 +1,10 @@
-import { Router } from 'express';
+import { Router } from 'express'
 
-const router = Router();
+import protuctRoutes from './product-routes'
 
-export default router;
+const routes = Router()
+
+routes.use('/product', protuctRoutes)
+
+export default routes
+
