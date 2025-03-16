@@ -33,7 +33,7 @@ export async function connectToDatabase() {
   }
 }
 
-// Rota para buscar dados da coleção 'equipments'
+// Exemplo para buscar dados da coleção 'equipments'
 /*app.get('/equipments', async (req: Request, res: Response) => {
   try {
     const database = await connectToDatabase()

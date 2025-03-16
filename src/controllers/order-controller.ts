@@ -131,4 +131,28 @@ export default class OrderController {
       res.status(500).json({ error: 'Erro ao remover pedido' })
     }
   }
+
+  static async getOrderByData(req: Request, res: Response) {
+    try {
+      const database = await connectToDatabase()
+      const collection = database.collection('Pedido')
+      const {data_pedido} = req.params
+      const dayStart = new Date(`${data_pedido}T00:00:00.000Z`)
+      const dayEnd = new Date(`${data_pedido}T23:59:59.999Z`)
+
+      console.log(data_pedido)
+      const pedidos = await collection.find(
+        {data_pedido: 
+          {
+            $gte: dayStart,
+            $lte: dayEnd
+          }
+        }).toArray()
+
+      res.status(200).json(pedidos)
+    } catch (error) {
+      console.error('Erro ao buscar pedidos não pagos por comandas:', error)
+      res.status(500).json({ error: 'Erro ao buscar pedidos não pagos por comandas' })
+    }
+  }
 }
