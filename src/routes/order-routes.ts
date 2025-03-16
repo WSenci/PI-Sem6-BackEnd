@@ -13,6 +13,10 @@ orderRoutes.get('/unpaid/:cod_comanda', OrderController.getUnpaidOrders)
 
 orderRoutes.get('/date/:data_pedido', OrderController.getOrderByData)
 
+orderRoutes.get('/date/:data_pedido/cmd/:cod_comanda', OrderController.getOrderByDataAndCommand)
+
+orderRoutes.get('/cmd/:cod_comanda', OrderController.getOrderByCommand)
+
 orderRoutes.post('/', OrderController.createOrder)
 
 orderRoutes.put('/:id',OrderController.updateOrder)
