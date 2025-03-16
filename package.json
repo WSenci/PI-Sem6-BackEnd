@@ -17,9 +17,12 @@
     "@types/mongoose": "^5.11.97",
     "@types/node": "^22.13.5",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.3"
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.7.3",
+    "nodemon": "^3.1.9"
   },
   "scripts": {
-    "start": "ts-node src/server.ts"
+    "start": "ts-node src/server.ts",
+    "dev": "nodemon --exec ts-node-dev src/server.ts"
   }
 }
