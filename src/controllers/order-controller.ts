@@ -31,6 +31,32 @@ export default class OrderController {
       res.status(500).json({ error: 'Erro ao buscar dados na coleção Pedidos' })
     }
   }
+  
+  static async getNoDoneOrders(req: Request, res: Response) {
+    try {
+      const database = await connectToDatabase()
+      const collection = database.collection('Pedido')
+      const pedidos = await collection.find({entregue: false}).toArray()
+      res.status(200).json(pedidos)
+    } catch (error) {
+      console.error('Erro ao buscar pedidos pendentes:', error)
+      res.status(500).json({ error: 'Erro ao buscar pedidos pendentes' })
+    }
+  }
+  
+  static async getUnpaidOrders(req: Request, res: Response) {
+    try {
+      const database = await connectToDatabase()
+      const collection = database.collection('Pedido')
+      const {cod_comanda} = req.params
+      const pedidos = await collection.find({pago: false, cod_comanda: cod_comanda}).toArray()
+
+      res.status(200).json(pedidos)
+    } catch (error) {
+      console.error('Erro ao buscar pedidos não pagos por comandas:', error)
+      res.status(500).json({ error: 'Erro ao buscar pedidos não pagos por comandas' })
+    }
+  }
 
   static async createOrder(req: Request, res: Response) {
     try {

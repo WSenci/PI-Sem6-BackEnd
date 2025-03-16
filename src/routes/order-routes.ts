@@ -7,6 +7,10 @@ orderRoutes.get('/', OrderController.getOrderList)
 
 orderRoutes.get('/:id', OrderController.getOrderById)
 
+orderRoutes.get('/pedidos/pendentes', OrderController.getNoDoneOrders)
+
+orderRoutes.get('/pedidos/nao-pagos/:cod_comanda', OrderController.getUnpaidOrders)
+
 orderRoutes.post('/', OrderController.createOrder)
 
 orderRoutes.put('/:id',OrderController.updateOrder)
