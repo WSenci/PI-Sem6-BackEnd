@@ -32,6 +32,25 @@ export default class ProductController {
     }
   }
   
+  //Listar produtos por tipo
+  static async getProductType(req: Request, res: Response) {
+    try {
+      const {tipo} = req.params
+
+      if (!tipo) {
+        res.status(400).json({ error: 'Tipo não fornecido' });
+      }
+      
+      const database = await connectToDatabase()
+      const collection = database.collection('Produto')
+      const produtos = await collection.find({tipo}).toArray()
+      res.status(200).json(produtos)
+    } catch (error) {
+      console.error('Erro ao buscar dados da coleção produto', error)
+      res.status(500).json({ error: 'Erro ao buscar dados da coleção produto' })
+    }
+  }
+
  /* static async getNoDoneProducts(req: Request, res: Response) {
     try {
       const database = await connectToDatabase()

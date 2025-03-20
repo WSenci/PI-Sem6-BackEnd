@@ -7,6 +7,9 @@ productRoutes.get('/', ProductController.getProductList)
 
 productRoutes.get('/:id', ProductController.getProductById)
 
+productRoutes.get('/tipo/:tipo', ProductController.getProductType)
+
+
 //productRoutes.get('/pending', ProductController.getNoDoneProducts)
 
 //productRoutes.get('/unpaid/:cod_comanda', ProductController.getUnpaidProducts)
