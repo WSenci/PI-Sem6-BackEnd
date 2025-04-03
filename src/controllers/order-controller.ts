@@ -36,7 +36,7 @@ export default class OrderController {
     try {
       const database = await connectToDatabase()
       const collection = database.collection('Pedido')
-      const pedidos = await collection.find({entregue: false}).toArray()
+      const pedidos = await collection.find({entregue: false}).sort({data_pedido: 1}).toArray()
       res.status(200).json(pedidos)
     } catch (error) {
       console.error('Erro ao buscar pedidos pendentes:', error)
