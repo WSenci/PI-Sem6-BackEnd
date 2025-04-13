@@ -5,7 +5,7 @@ const orderRoutes = Router()
 
 orderRoutes.get('/', OrderController.getOrderList)
 
-orderRoutes.get('/:id', OrderController.getOrderById)
+orderRoutes.get('/id/:id', OrderController.getOrderById)
 
 orderRoutes.get('/pending', OrderController.getNoDoneOrders)
 
