@@ -163,7 +163,7 @@ export default class OrderController {
       const {cod_comanda} = req.params
 
       //console.log(cod_comanda)
-      const pedidos = await collection.find({ cod_comanda: Number(cod_comanda) }).toArray()
+      const pedidos = await collection.find({ pago: false, cod_comanda: Number(cod_comanda) }).toArray()
 
       res.status(200).json(pedidos)
     } catch (error) {
