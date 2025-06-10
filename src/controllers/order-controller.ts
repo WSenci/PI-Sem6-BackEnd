@@ -98,6 +98,10 @@ export default class OrderController {
 
       const database = await connectToDatabase();
       const collection = database.collection('Pedido')
+
+      // console.log(updatedData)
+      // console.log('\n')
+      // console.log(id)
       const result = await collection.updateOne(
         { _id: new ObjectId(id) },
         { $set: updatedData }
