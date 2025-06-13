@@ -7,7 +7,7 @@ export default class OrderController {
     try {
       const database = await connectToDatabase()
       const collection = database.collection('Pedido')
-      const pedidos = await collection.find({}).toArray()
+      const pedidos = await collection.find({}).sort({ data_pedido: 1 }).toArray()
       res.status(200).json(pedidos)
     } catch (error) {
       console.error('Erro ao buscar dados da coleção pedido', error)
@@ -49,7 +49,7 @@ export default class OrderController {
       const database = await connectToDatabase()
       const collection = database.collection('Pedido')
       const {cod_comanda} = req.params
-      const pedidos = await collection.find({pago: false, cod_comanda: cod_comanda}).toArray()
+      const pedidos = await collection.find({pago: false, cod_comanda: cod_comanda}).sort({data_pedido: 1}).toArray()
 
       res.status(200).json(pedidos)
     } catch (error) {
@@ -151,7 +151,7 @@ export default class OrderController {
             $gte: dayStart,
             $lte: dayEnd
           }
-        }).toArray()
+        }).sort({data_pedido: 1}).toArray()
 
       res.status(200).json(pedidos)
     } catch (error) {
@@ -167,7 +167,7 @@ export default class OrderController {
       const {cod_comanda} = req.params
 
       //console.log(cod_comanda)
-      const pedidos = await collection.find({ pago: false, cod_comanda: Number(cod_comanda) }).toArray()
+      const pedidos = await collection.find({ pago: false, cod_comanda: Number(cod_comanda) }).sort({data_pedido: 1}).toArray()
 
       res.status(200).json(pedidos)
     } catch (error) {
@@ -193,7 +193,7 @@ export default class OrderController {
             $gte: dayStart,
             $lte: dayEnd
           }
-        }).toArray()
+        }).sort({data_pedido: 1}).toArray()
 
       res.status(200).json(pedidos)
     } catch (error) {
